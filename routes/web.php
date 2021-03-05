@@ -4,6 +4,16 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['preventBackHistory']], function () {
 
+
+    /**
+     * Routes Details Plan
+     */
+    Route::resource('profiles', 'ACL\ProfileController');
+
+    /**  */
+
+
+
     /**
      * Routes Details Plan
      */

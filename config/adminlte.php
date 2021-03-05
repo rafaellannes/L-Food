@@ -133,7 +133,7 @@ return [
     'sidebar_nav_accordion' => true,
     'sidebar_nav_animation_speed' => 300,
 
-    
+
 
     /*
     |--------------------------------------------------------------------------
@@ -217,7 +217,14 @@ return [
             'icon' => 'far fa-fw fa-list-alt',
 
         ],
-        
+
+        [
+            'text' => 'Perfis',
+            'url'  => 'admin/profiles',
+            'icon' => 'far fa-fw fa-address-book',
+
+        ],
+
     ],
 
     /*
