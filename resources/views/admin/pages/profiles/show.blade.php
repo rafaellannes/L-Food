@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', "Detalhes do plano: {$plan->name}")
+@section('title', "Detalhes do perfil: {$profile->name}")
 
 @section('content_header')
-<h1>Detalhes do plano: {{$plan->name}}</h1>
+<h1>Detalhes do perfil: {{$profile->name}}</h1>
 @stop
 
 @section('content')
@@ -15,20 +15,19 @@
                 </div>
 
                 <div class="card-body">
-                    <dl>
-                      <dt>Nome:</dt>
-                      <dd>{{$plan->name}}</dd>
-                      <dt>URL:</dt>
-                    <dd>{{$plan->url}}</dd>
+                    <ul>
+                        <li>
+                            <strong>Nome:</strong>{{$profile->name}}
+                        </li>
 
-                    <dt>Preço</dt>
-                      <dd>R$: {{number_format($plan->price, 2,',', '.')}}</dd>
-                    <dt>Descrição</dt>
-                    <dd>{{$plan->description}}</dd>
-                    </dl>
+                        <li>
+                            <strong>Descrição:</strong>{{$profile->description}}
+                        </li>
+
+                    </ul>
                   </div>
          <div class="card-footer">
-            <button class="btn btn-danger" data-toggle="modal" data-target="#delete"><i class="fas fa-trash fa-fw"></i>Deletar plano</button>
+            <button class="btn btn-danger" data-toggle="modal" data-target="#delete"><i class="fas fa-trash fa-fw"></i>Deletar perfil</button>
          </div>
         </div>
     </div>
@@ -38,17 +37,17 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Deletar Plano?</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Deletar Perfil?</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <form action="{{route('plans.destroy', $plan->url)}}" method="post">
+        <form action="{{route('profiles.destroy', $profile->id)}}" method="post">
             @method("DELETE")
               {{csrf_field()}}
           <div class="modal-body">
                 <p class="text-center">
-                   Tem certeza que deseja deletar o plano: {{$plan->name}}
+                   Tem certeza que deseja deletar o perfil: {{$profile->name}}
                 </p>
 
           </div>
