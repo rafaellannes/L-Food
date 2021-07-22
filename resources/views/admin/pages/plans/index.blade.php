@@ -49,7 +49,7 @@
                             <th>Nome</th>
                             <th>Descrição</th>
                             <th>Preço</th>
-                            <th width="270">Ações</th>
+                            <th width="290">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -70,7 +70,7 @@
                                     class="btn btn-primary">Detalhes</a>
                                 <a href="{{route('plans.show', $plan->url)}}" class="btn btn-info">Ver</a>
                                 <a href="{{route('plans.edit', $plan->url)}}" class="btn btn-secondary">Editar</a>
-                                <a href="{{route('plans.profiles', $plan->id)}}" class="btn btn-secondary">Perfis</a>
+                                <a href="{{route('plans.profiles', $plan->id)}}" class="btn btn-secondary"><i class="fas fa-list"></i></a>
                             </td>
                         </tr>
                         @endforeach

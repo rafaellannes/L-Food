@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd09d9a2fed38cc3650aed26c54ca961",
+    "content-hash": "6d208a319087d03370ad755a2a09b577",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -1011,27 +1011,23 @@
         },
         {
             "name": "laravel/ui",
-            "version": "v2.0.3",
+            "version": "v2.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/ui.git",
-                "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1"
+                "reference": "d01a705763c243b07be795e9d1bb47f89260f73d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/ui/zipball/15368c5328efb7ce94f35ca750acde9b496ab1b1",
-                "reference": "15368c5328efb7ce94f35ca750acde9b496ab1b1",
+                "url": "https://api.github.com/repos/laravel/ui/zipball/d01a705763c243b07be795e9d1bb47f89260f73d",
+                "reference": "d01a705763c243b07be795e9d1bb47f89260f73d",
                 "shasum": ""
             },
             "require": {
                 "illuminate/console": "^7.0",
                 "illuminate/filesystem": "^7.0",
                 "illuminate/support": "^7.0",
-                "php": "^7.2.5"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.0",
-                "phpunit/phpunit": "^8.0"
+                "php": "^7.2.5|^8.0"
             },
             "type": "library",
             "extra": {
@@ -1062,7 +1058,7 @@
                 "laravel",
                 "ui"
             ],
-            "time": "2020-04-29T15:06:45+00:00"
+            "time": "2020-11-03T19:45:19+00:00"
         },
         {
             "name": "league/commonmark",
