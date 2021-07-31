@@ -45,7 +45,7 @@ class DetailPlanController extends Controller
         }
 
         $plan->details()->create($request->all());
-        return redirect()->route('details.plan.index', $plan->url)->with('success', 'Plano cadastrado com sucesso');
+        return redirect()->route('details.plan.index', $plan->url)->with('success', 'Detalhe do plano cadastrado com sucesso');
     }
 
     public function edit($urlPlan, $idDetail)
