@@ -18,6 +18,7 @@ class CreateTenantsTable extends Migration
 
             $table->string('cnpj')->unique();
             $table->unsignedBigInteger('plan_id'); //plano
+            $table->uuid('uuid');
             $table->string('name')->unique();
             $table->string('url')->unique();
             $table->string('email')->unique();

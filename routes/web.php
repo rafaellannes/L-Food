@@ -8,6 +8,15 @@ Route::group([
     'middleware' => ['preventBackHistory', 'auth']
 ], function () {
 
+    /**
+     * Routes Users
+     */
+    Route::any('profiles/search', 'UserController@search')->name('users.search');
+    Route::resource('users', 'UserController');
+
+    /**  */
+
+
 
     /**
      * Plan x Profile
