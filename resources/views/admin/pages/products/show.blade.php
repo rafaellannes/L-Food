@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', "Detalhes da Categoria: {$category->name}")
+@section('title', "Detalhes do Produto: {$product->name}")
 
 @section('content_header')
-<h1>Detalhes da Categoria: {{$category->name}}</h1>
+<h1>Detalhes do Produto: {{$product->name}}</h1>
 @stop
 
 @section('content')
@@ -16,23 +16,25 @@
 
             <div class="card-body">
                 <ul>
+                    <img style="max-width: 90px" alt="{{$product->title}}" src="{{url("storage/{$product->image}")}}">
+
                     <li>
-                        <strong>Nome:</strong>{{$category->name}}
+                        <strong>Titulo:</strong>{{$product->title}}
                     </li>
 
                     <li>
-                        <strong>URL:</strong>{{$category->url}}
+                        <strong>Flag:</strong>{{$product->flag}}
                     </li>
 
                     <li>
-                        <strong>Descrição:</strong>{{$category->description}}
+                        <strong>Descrição:</strong>{{$product->description}}
                     </li>
 
                 </ul>
             </div>
             <div class="card-footer">
                 <button class="btn btn-danger" data-toggle="modal" data-target="#delete"><i
-                        class="fas fa-trash fa-fw"></i>Deletar Categoria</button>
+                        class="fas fa-trash fa-fw"></i>Deletar Produto</button>
             </div>
         </div>
     </div>
@@ -42,17 +44,17 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Deletar Categoria?</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Deletar Produto?</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{route('categories.destroy', $category->id)}}" method="post">
+            <form action="{{route('products.destroy', $product->id)}}" method="post">
                 @method("DELETE")
                 {{csrf_field()}}
                 <div class="modal-body">
                     <p class="text-center">
-                        Tem certeza que deseja deletar a categoria {{$category->name}}
+                        Tem certeza que deseja deletar o produto {{$product->name}}
                     </p>
 
                 </div>

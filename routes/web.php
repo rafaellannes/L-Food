@@ -8,7 +8,31 @@ Route::group([
     'middleware' => ['preventBackHistory', 'auth']
 ], function () {
 
+    Route::get('teste', function(){
+        dd(auth()->user()->isAdmin());
+    });
+    /**
+     * Routes Tables
+     */
+    Route::any('tables/search', 'TableController@search')->name('tables.search');
+    Route::resource('tables', 'TableController');
 
+    /**
+     * Product x Category
+     */
+    Route::get('products/{id}/category/{idCategory}/detach', 'CategoryProductController@detachCategoriesProduct')->name('products.category.detach');
+    Route::post('products/{id}/categories', 'CategoryProductController@attachCategoriesProduct')->name('products.categories.attach');
+    Route::any('products/{id}/categories/create', 'CategoryProductController@categoriesAvaiable')->name('products.categories.avaiable');
+    Route::get('products/{id}/categories', 'CategoryProductController@categories')->name('products.categories');
+    Route::get('categories/{id}/products', 'CategoryProductController@products')->name('categories.products');
+
+    /**
+     * Routes Products
+     */
+    Route::any('products/search', 'ProductController@search')->name('products.search');
+    Route::resource('products', 'ProductController');
+
+    /**  */
     /**
      * Routes Categories
      */
