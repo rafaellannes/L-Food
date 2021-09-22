@@ -1,16 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', 'Usuários')
+@section('title', "Permissões do Cargo {$role->name}")
 
 @section('content_header')
 <div class="row">
     <div class="col-sm-6">
-        <h1>Usuários</h1>
+        <h1>Permissões disponíveis do Cargo: <strong>{{$role->name}}</strong></h1>
     </div>
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-            <li class="breadcrumb-item active">Usuários</li>
+            <li class="breadcrumb-item active">Cargos</li>
         </ol>
     </div>
 </div>
@@ -24,7 +24,8 @@
 
                 <div class="row">
                     <div>
-                        <form class="form form-inline" action="{{route('users.search')}}" method="POST">
+                        <form class="form form-inline" action="{{route('roles.permissions.avaiable', $role->id)}}"
+                            method="POST">
                             @csrf
                             <input type="text" name="filter" placeholder="Filtrar..." class="form-control"
                                 value="{{$filters['filter'] ?? ''}}">
@@ -35,8 +36,7 @@
 
                     <div class="ml-auto">
                         <div class="card-tools">
-                            <a href="{{route('users.create')}}"><button class="btn btn-success">Adicionar <i
-                                        class="fas fa-plus fa-fw"></i></button></a>
+
                         </div>
                     </div>
                 </div>
@@ -46,39 +46,42 @@
                 <table class="table table-condensed">
                     <thead>
                         <tr>
+                            <th width="50px">#</th>
                             <th>Nome</th>
-                            <th>E-mail</th>
-                            <th width="250">Ações</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($users as $user)
-                        <tr>
-                            <td>
-                                {{$user->name}}
-                            </td>
+                        <form action="{{route('roles.permissions.attach', $role->id )}}" method="POST">
+                            @csrf
+                            @foreach ($permissions as $permission)
+                            <tr>
+                                <td>
+                                    <input type="checkbox" name="permissions[]" value="{{$permission->id}}">
+                                </td>
+                                <td>
+                                    {{$permission->name}}
+                                </td>
 
-                            <td>
-                                {{$user->email}}
-                            </td>
-
-                            <td style="width=30px">
-
-                                <a href="{{route('users.show', $user->id)}}" class="btn btn-info">Ver</a>
-                                <a href="{{route('users.edit', $user->id)}}" class="btn btn-secondary">Editar</a>
-                                <a href="{{route('users.roles', $user->id)}}" title="Cargos" class="btn btn-secondary"><i class="fas fa-address-book"></i> Cargos</a>
-
-                            </td>
-                        </tr>
-                        @endforeach
+                                {{--        <td style="width=30px">
+                        <a href="{{route('roles.edit', $role->id)}}" class="btn btn-secondary">Editar</a>
+                                </td> --}}
+                            </tr>
+                            @endforeach
+                            <tr>
+                                <td colspan="500">
+                                    <button class="btn btn-success" type="submit">Vincular</button>
+                                </td>
+                            </tr>
+                        </form>
                     </tbody>
                 </table>
             </div>
             <div class="card-footer">
                 @if (isset($filters))
-                {!! $users->appends($filters)->links() !!}
+                {!! $permissions->appends($filters)->links() !!}
                 @else
-                {!! $users->links() !!}
+                {!! $permissions->links() !!}
                 @endif
 
             </div>

@@ -15,11 +15,13 @@ class PlanController extends Controller
 
 {
     private $repository;
+
     public function __construct(Plan $plan)
     {
-
         $this->repository = $plan;
+        $this->middleware(['can:plans']);
     }
+
     public function index()
     {
         $plans = $this->repository->paginate();
@@ -54,9 +56,9 @@ class PlanController extends Controller
         if (!$plan)
             return redirect()->back();
 
-            if($plan->details->count() > 0){
-                return redirect()->back()->with('errors', 'Existem detalhes vinculados ao plano');
-            }
+        if ($plan->details->count() > 0) {
+            return redirect()->back()->with('errors', 'Existem detalhes vinculados ao plano');
+        }
         $plan->delete();
         return redirect()->route('plans.index')->with('success', 'Plano excluido com sucesso');
     }

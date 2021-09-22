@@ -39,6 +39,23 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+
+    public function rolesAvaiable($filter = null)
+    {
+        $roles = Role::whereNotIn('roles.id', function ($query) {
+            $query->select('role_user.role_id');
+            $query->from('role_user');
+            $query->whereRaw("role_user.role_id = {$this->id}");
+        })
+            ->where(function ($queryFilter) use ($filter) {
+                if ($filter)
+                    $queryFilter->where('roles.name', 'LIKE', "%{$filter}%");
+            })
+            ->paginate();
+
+        return $roles;
+    }
+
     public function scopeTenantUser(Builder $query)
     {
         return $query->where('tenant_id', auth()->user()->tenant_id);
@@ -47,5 +64,10 @@ class User extends Authenticatable
     public function tenant()
     {
         return $this->belongsTo(Tenant::class);
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 }

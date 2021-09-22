@@ -1,17 +1,16 @@
 @extends('adminlte::page')
 
-@section('title', "Planos do Perfil {$profile->name}")
+@section('title', "Permissões do Perfil {$role->name}")
 
 @section('content_header')
 <div class="row">
     <div class="col-sm-6">
-        <h1>Planos do Perfil: <strong>{{$profile->name}}</strong></h1>
+        <h1>Permissões do Perfil: <strong>{{$role->name}}</strong></h1>
     </div>
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
             <li class="breadcrumb-item"><a href="{{route('admin.index')}}">Home</a></li>
-            <li class="breadcrumb-item ">Perfis</li>
-            <li class="breadcrumb-item active"><a href="{{route('profiles.plans', $profile->id)}}">Planos</a></li>
+            <li class="breadcrumb-item active">Perfis</li>
         </ol>
     </div>
 </div>
@@ -25,13 +24,13 @@
 
                 <div class="row">
 
-               {{--      <div class="ml-auto">
+                    <div class="ml-auto">
                         <div class="card-tools">
-                            <a href="{{route('profiles.permissions.avaiable',$profile->id)}}"><button
+                            <a href="{{route('roles.permissions.avaiable',$role->id)}}"><button
                                     class="btn btn-success">Adicionar Permissão
                                     <i class="fas fa-plus fa-fw"></i></button></a>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
 
@@ -40,20 +39,20 @@
                     <thead>
                         <tr>
                             <th>Nome</th>
-                            {{-- <th width="250">Ações</th> --}}
+                            <th width="250">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($plans as $plan)
+                        @foreach ($permissions as $permission)
                         <tr>
                             <td>
-                                {{$plan->name}}
+                                {{$permission->name}}
                             </td>
 
-                      {{--       <td style="width=30px">
-                                <a href="{{route('plans.profile.detach',[$plan->id, $profile->id])}}"
+                            <td style="width=30px">
+                                <a href="{{route('roles.permissions.detach',[$role->id, $permission->id])}}"
                                     class="btn btn-danger">Desvincular</a>
-                            </td> --}}
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -61,9 +60,9 @@
             </div>
             <div class="card-footer">
                 @if (isset($filters))
-                {!! $plans->appends($filters)->links() !!}
+                {!! $permissions->appends($filters)->links() !!}
                 @else
-                {!! $plans->links() !!}
+                {!! $permissions->links() !!}
                 @endif
 
             </div>
