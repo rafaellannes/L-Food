@@ -57,7 +57,6 @@ class ProductController extends Controller
 
         $this->repository->create($data);
 
-
         return redirect()->route('products.index')->with('success', 'Produto cadastrado com sucesso');
     }
 
