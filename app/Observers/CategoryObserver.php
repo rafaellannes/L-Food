@@ -17,6 +17,8 @@ class CategoryObserver
     {
         $ascii = Str::ascii($category->name);
         $category->url = Str::kebab($ascii);
+
+        $category->uuid = Str::uuid();
     }
 
     /**

@@ -17,6 +17,8 @@ class ProductObserver
     {
         $ascii = Str::ascii($product->title);
         $product->flag = Str::kebab($ascii);
+
+        $product->uuid = Str::uuid();
     }
 
     /**
